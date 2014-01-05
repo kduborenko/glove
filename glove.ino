@@ -26,7 +26,18 @@ void setup() {
   delay(100);
   bluetooth.println("U,9600,N");
   bluetooth.begin(9600);
-  // todo initialize BT
+  
+  bluetooth.print("$$$");
+  delay(100);
+  bluetooth.println("S~,6");     // Enable HID
+  delay(100);
+  bluetooth.println("SH,0000");  // HID mode keyboard
+  delay(100);
+  bluetooth.println("SM,6");     // Pairing mode (auto-reconnect)
+  delay(100);
+  bluetooth.println("S-,Glove"); // Device name
+  delay(100);
+  bluetooth.println("---");
 }
 
 void loop() {
