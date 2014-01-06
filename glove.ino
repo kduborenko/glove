@@ -52,6 +52,13 @@ void onKeyPressed(byte keyIndex) {
     mediaKey(0x10);
   } else if (keyIndex == 4) {
     mediaKey(0x20);
+  } else if (keyIndex == 8) {
+    // I have no idea does it work
+    byte pressKeySequence[] = {0xFE, 0x01, 0x00, 0x1B};
+    Serial.write(pressKeySequence, 5);
+    delay(10);
+    byte releaseKeySequence[] = {0xFE, 0x00};
+    Serial.write(releaseKeySequence, 5);
   } else if (keyCodes[keyIndex] != 0) {
     Serial.write(keyCodes[keyIndex]);
   }
