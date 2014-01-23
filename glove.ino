@@ -5,7 +5,7 @@
 #define KEYS_COUNT 9
 
 byte keyPins[KEYS_COUNT] = {
-  A0, 11, 10, 9, 8, A1, A2, A3, A4
+  7, 5, 4, 3, 2, 8, 9, 10, 11
 };
 byte keyStates[KEYS_COUNT];
 byte keyCodes[KEYS_COUNT] = {
@@ -14,7 +14,7 @@ byte keyCodes[KEYS_COUNT] = {
 
 void setup() {
   for (int i = 0; i < KEYS_COUNT; i++) {
-    pinMode(keyPins[i], INPUT);
+    pinMode(keyPins[i], INPUT_PULLUP);
   }
   
   Serial.begin(115200);  
@@ -33,7 +33,7 @@ void setup() {
 
 void loop() {
   for (int i = 0; i < KEYS_COUNT; i++) {
-    if (digitalRead(keyPins[i]) == 1) {
+    if (digitalRead(keyPins[i]) == 0) {
       if (keyStates[i] == KEY_STATE_NONE) {
         keyStates[i] = KEY_STATE_JUST_PRESSED;
       } else if (keyStates[i] == KEY_STATE_JUST_PRESSED) {
